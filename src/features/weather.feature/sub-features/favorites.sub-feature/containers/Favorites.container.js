@@ -1,6 +1,7 @@
 import React ,{Component} from 'react';
 import {connect} from "react-redux";
 import {LoadFavoritesAction,RemoveFavoriteAction} from '../redux/Favorites.actions'
+
 import CityItem from '../components/CityItem.component'
 import Container from "react-bootstrap/es/Container";
 import Row from "react-bootstrap/Row";
@@ -10,16 +11,17 @@ class Favorites extends Component{
     componentDidMount() {
         const { dispatch  } = this.props;
         dispatch(LoadFavoritesAction())
+    };
 
-
-    }
-
-    RemoveFavorite=(id)=>{
+    RemoveFavorite=id=>{
         const { dispatch  } = this.props;
-
-        console.log(id)
         dispatch(RemoveFavoriteAction(id))
-    }
+    };
+
+    ChooseFavorite=id=>{
+        alert("choosen"+ id)
+    };
+
     render(){
         const { favItems  } = this.props;
         return(
@@ -31,7 +33,7 @@ class Favorites extends Component{
                         favItems.map((data, index) => (
 
                             <Col sm={2}>
-                                <CityItem parentMethod={(id) => this.RemoveFavorite(id)} temp={data.current[0].Temperature.Metric.Value} cityName={data.city} />
+                                <CityItem ChooseFavorite={(id) => this.ChooseFavorite(id)} RemoveFavorite={(id) => this.RemoveFavorite(id)} temp={data.current[0].Temperature.Metric.Value} cityName={data.city} />
                             </Col>
                         ))}
 

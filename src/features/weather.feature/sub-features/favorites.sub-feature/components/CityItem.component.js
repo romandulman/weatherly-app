@@ -8,14 +8,14 @@ const CityItem = props =>{
    // const [temp, chnageTemp] = useState(props.temp);
 
     return(
-        <Card className="item-card">
+        <Card onClick={()=>props.ChooseFavorite(props.cityName)} className="item-card">
          <div>{props.cityName}</div>
             <br/>
             <div>{props.temp}</div>
             <br/>
             <div>{props.condition}</div>
-            <Button>change to F</Button>
-            <Button onClick={()=>props.parentMethod(props.cityName)}>Remove</Button>
+            <Button >switch to F</Button>
+            <Button onClick={()=>props.RemoveFavorite(props.cityName)}>Remove</Button>
         </Card>
 
     )
