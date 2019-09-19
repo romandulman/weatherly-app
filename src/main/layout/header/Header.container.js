@@ -33,10 +33,10 @@ class Header extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav " className="justify-content-end">
                     <Nav>
                         <Nav.Link>
-                            <Link to="/home"><Button>Home</Button></Link>
+                            <Link to="/home"><Button className="navbarButtonMisc">Home</Button></Link>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to="/favorites"><Button>favorites</Button></Link>
+                            <Link to="/favorites"><Button className="navbarButtonMisc" >favorites</Button></Link>
                         </Nav.Link>
                     </Nav>
 

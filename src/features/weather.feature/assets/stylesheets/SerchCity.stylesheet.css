@@ -9,3 +9,11 @@
     box-shadow: 10px 10px 18px -13px rgba(0,0,0,0.75);
 }
 
+.dropdown-content {
+    position: relative;
+    text-align: center;
+    list-style-type: none;
+    max-width: 240px;
+}
+
+

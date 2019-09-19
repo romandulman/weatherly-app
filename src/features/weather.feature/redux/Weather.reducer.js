@@ -22,7 +22,7 @@ export const WeatherReducer = (state=initState, action) => {
             return {
                 ...state,
                 loading: false,
-                items: { current: action.payload.current, forcast: action.payload.forcast}
+                items: { current: action.payload.current, forcast: action.payload.forcast, city: action.payload.city}
             };
 
         case WeatherConstants.FETCH_WEATHER_FAILURE:
@@ -33,32 +33,8 @@ export const WeatherReducer = (state=initState, action) => {
                 error: action.payload.error,
             };
 
-        case WeatherConstants.ADD_FAVORITE:
-            console.log(state.favItems);
-            return {
-                ...state,
-                items: { current: state.items.current, forcast: state.items.forcast},
-                isFavorite: true,
-                favItems: [...state.favItems, state.items]
-            };
-        case WeatherConstants.REMOVE_FAVORITE:
-            return {
-                ...state,
-                items: { current: state.items.current, forcast: state.items.forcast},
-                isFavorite: false,
-                favItems: [
-                    ...state.favItems.slice(0, 1),
-                   // ...state.favItems.slice(state.favItems + 1)
-                ],
-            };
 
-        case WeatherConstants.LOAD_FAVORITES:
-            return {
-                ...state,
-                favItems: [
-                    ...state.favItems
-                ],
-            };
+
         default:
             return state
     }

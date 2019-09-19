@@ -5,25 +5,30 @@ import "../assets/stylesheets/Weather.stylesheet.css";
 import DayItem from "../components/DayItem.component";
 import {
   LoadWeatherAction,
-  AddFavotiteAction,
-  RemoveFavoriteAction
+    HandleFavorite
+ // AddFavotiteAction,
+//  RemoveFavoriteAction
 } from "../redux/Weather.actions";
 import Container from "react-bootstrap/es/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Spinner from "../../common/Spinner";
+import Spinner from "../../../main/common/Spinner";
 
 class Weather extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(LoadWeatherAction(215854, "tlv"));
+    dispatch(LoadWeatherAction(215854, "Tel-Aviv"));
+
+    const geo =  navigator.geolocation.watchPosition(function(position) {
+      return position.coords.latitude
+    });
+    alert(geo);
   }
 
   render() {
     const { dispatch, weatherData, isFavorite, loading } = this.props;
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-      console.log(isFavorite)
     return (
       <div className="root">
         <Container>
@@ -34,25 +39,26 @@ class Weather extends Component {
               {weatherData.current &&
                 weatherData.current.map(data => (
                   <div>
+                    <div>{weatherData.city}</div>
                     <div>{data.Temperature.Metric.Value} C°</div>
                     <div>{data.WeatherText} </div>
                   </div>
                 ))}
             </Col>
             <Button
-              onClick={() =>
-                isFavorite
-                  ? dispatch(RemoveFavoriteAction())
-                  : dispatch(AddFavotiteAction())
+             onClick={() =>
+               // isFavorite
+                   dispatch(HandleFavorite(weatherData))
+                //  : dispatch(HandleFavorite(isFavorite))
               }
             >
               {isFavorite ? "remove from fav" : "add to Fav"}
             </Button>
           </Row>
           <Row>
-            {weatherData.forcast &&
+            {weatherData.current &&
               // weatherData.fData.DailyForecasts
-              weatherData.forcast.map((data, index) => (
+              weatherData.forcast.DailyForecasts.map((data, index) => (
                 <Col sm={2}>
                   <DayItem
                     fromTemp={data.Temperature.Minimum.Value}

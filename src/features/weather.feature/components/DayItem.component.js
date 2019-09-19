@@ -4,6 +4,8 @@ import '../assets/stylesheets/DayItem.stylesheet.css'
 
 
 const DayItem = props =>{
+
+
     const [temp, chnageTemp] = useState(props.fromTemp);
     const [temp2, chnageTemp2] = useState(props.toTemp);
 

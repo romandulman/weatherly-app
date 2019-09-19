@@ -7,12 +7,11 @@ import Card from 'react-bootstrap/Card';
 import '../assets/stylesheets/SerchCity.stylesheet.css'
 import {LoadWeatherAction} from "../redux/Weather.actions";
 import {findCity} from '../api/Weather.api'
-import Autosuggest from 'react-autosuggest';
-
+import Dropdown from 'react-bootstrap/Dropdown'
 class SearchCity extends Component {
   state= {
     list:''
-  }
+  };
 
   onFieldChange = (e) => {
     const { value } = e.target;
@@ -20,20 +19,19 @@ class SearchCity extends Component {
       this.setState({list: sug })
     })
 
-    // dispatch(findByNameAction(this.search.value))
   };
 
  enterName = (key,city) =>{
    const { dispatch } = this.props;
    dispatch(LoadWeatherAction(key,city))
- }
+ };
 
   render() {
     return (
         <div >
           <Card className="search-box">
             <Card.Body>
-              <Form inline>
+
                 <FormControl
                     type="text"
                     placeholder="Search City"
@@ -42,12 +40,14 @@ class SearchCity extends Component {
                       this.onFieldChange(e);
                     }}
                 />
-                <Button variant="outline-success">Search</Button>
-              </Form>
+              {/*  <Button variant="outline-success">Search</Button>*/}
+
             </Card.Body>
             <ul>{this.state.list && this.state.list.map((name)=>(
-                <li><a onClick={()=>{this.enterName(name.Key,'tlv')}} >{name.LocalizedName}</a></li>
+                <li className="dropdown-content"><Dropdown.Item  onClick={()=>{this.enterName(name.Key,name.LocalizedName)}}>{name.LocalizedName}</Dropdown.Item></li>
             ))}</ul>
+
+
           </Card>
 
         </div>

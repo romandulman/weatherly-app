@@ -15,7 +15,7 @@ const CityItem = props =>{
             <br/>
             <div>{props.condition}</div>
             <Button>change to F</Button>
-            <Button>Remove</Button>
+            <Button onClick={()=>props.parentMethod(props.cityName)}>Remove</Button>
         </Card>
 
     )

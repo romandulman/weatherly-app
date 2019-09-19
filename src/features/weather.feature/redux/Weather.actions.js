@@ -1,16 +1,19 @@
 import { WeatherConstants } from './Weather.constants';
-import { reqCityWeather, getDailyForcasts, findCity} from '../api/Weather.api'
-
+import { reqCityWeather, getDailyForcasts} from '../api/Weather.api'
+import {AddFavotiteAction, RemoveFavoriteAction} from '../sub-features/favorites.sub-feature/redux/Favorites.actions'
 
 
 export const LoadWeatherAction = (key,city) => {
+
     return dispatch => {
         dispatch(fetchWeatherBegin());
 
         reqCityWeather(key).then(
             current=> {
                 getDailyForcasts(key).then(
+
                     forcast => {
+                        console.log(forcast)
                         dispatch(loadWeatherData(current,forcast,city));
                     })
             },
@@ -24,24 +27,19 @@ export const LoadWeatherAction = (key,city) => {
     };
 };
 
+export const HandleFavorite =(handle)=>{
+    return dispatch =>{
+     //   if (handle){
+            dispatch(AddFavotiteAction(handle))
 
-export const AddFavotiteAction = key => {
-    return dispatch => {
-        dispatch(AddToFavorites(key))
-    };
-};
+      //  }else{
+          //  dispatch(RemoveFavoriteAction())
+      //  }
+    }
+}
 
-export const RemoveFavoriteAction = city =>{
-    return dispatch => {
-        dispatch(RemoveFavorite(city))
-    };
-};
 
-export const LoadFavoritesAction = () =>{
-    return dispatch => {
-        dispatch(LoadFavorites())
-    };
-};
+
 ///////////////////////////////////////////////////////
 
 
@@ -57,19 +55,8 @@ const fetchWeatherFailure  = error => ({
 
 const loadWeatherData = (current,forcast,city) => ({
     type: WeatherConstants.FETCH_WEATHER_SUCCESS,
-    payload: { current, forcast }
+    payload: { current, forcast ,city }
 });
 
 
-const AddToFavorites = key => ({
-    type: WeatherConstants.ADD_FAVORITE, key
-});
-
-const RemoveFavorite = city => ({
-   type: WeatherConstants.REMOVE_FAVORITE, city
-});
-
-const LoadFavorites = () => ({
-    type: WeatherConstants.LOAD_FAVORITES
-});
 

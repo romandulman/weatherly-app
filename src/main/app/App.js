@@ -1,7 +1,7 @@
 import React ,{Component} from 'react';
 import Header from '../layout/header/Header.container'
-import FavoritesPage from '../weather/containers/Favorites.container'
-import WeatherPage from '../weather/containers/Weather.container'
+import {FavoritesPage} from '../../features'//weather.feature/sub-features/favorites.sub-feature/containers/Favorites.container'
+import {WeatherPage} from '../../features' ///weather.feature/containers/Weather.container'
 import {
   BrowserRouter as Router,
   Route,

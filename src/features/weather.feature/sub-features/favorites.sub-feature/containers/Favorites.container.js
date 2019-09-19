@@ -1,6 +1,6 @@
 import React ,{Component} from 'react';
 import {connect} from "react-redux";
-import {LoadFavoritesAction} from '../redux/Favorites.actions'
+import {LoadFavoritesAction,RemoveFavoriteAction} from '../redux/Favorites.actions'
 import CityItem from '../components/CityItem.component'
 import Container from "react-bootstrap/es/Container";
 import Row from "react-bootstrap/Row";
@@ -11,9 +11,15 @@ class Favorites extends Component{
         const { dispatch  } = this.props;
         dispatch(LoadFavoritesAction())
 
+
     }
 
+    RemoveFavorite=(id)=>{
+        const { dispatch  } = this.props;
 
+        console.log(id)
+        dispatch(RemoveFavoriteAction(id))
+    }
     render(){
         const { favItems  } = this.props;
         return(
@@ -25,7 +31,7 @@ class Favorites extends Component{
                         favItems.map((data, index) => (
 
                             <Col sm={2}>
-                                <CityItem temp={data.current[0].Temperature.Metric.Value}  />
+                                <CityItem parentMethod={(id) => this.RemoveFavorite(id)} temp={data.current[0].Temperature.Metric.Value} cityName={data.city} />
                             </Col>
                         ))}
 
@@ -42,9 +48,9 @@ class Favorites extends Component{
 
 const mapStateToProps = state => {
     //const weatherData = state.WeatherReducer;
-    console.log(state.WeatherReducer.favItems)
+    console.log(state.FavoritesReducer.favItems)
     return {
-        favItems: state.WeatherReducer.favItems
+        favItems: state.FavoritesReducer.favItems
     };
 };
 export default connect(mapStateToProps)(Favorites);
