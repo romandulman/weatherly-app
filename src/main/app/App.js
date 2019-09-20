@@ -1,7 +1,10 @@
 import React ,{Component} from 'react';
 import Header from '../layout/header/Header.container'
 import {FavoritesPage} from '../../features'//weather.feature/sub-features/favorites.sub-feature/containers/Favorites.container'
-import {WeatherPage} from '../../features' ///weather.feature/containers/Weather.container'
+import {WeatherPage} from '../../features'
+import {history} from "../../helpers/history";///weather.feature/containers/Weather.container'
+import {alertActions} from "../common/alert/redux/Alert.actions";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -12,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        <Router history={history}>
           <Header/>
           <Route path="/">
             <Redirect to="/home" />

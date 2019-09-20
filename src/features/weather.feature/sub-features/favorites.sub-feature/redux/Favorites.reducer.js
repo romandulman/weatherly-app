@@ -1,5 +1,4 @@
 import {FavoritesConstants} from './Favorites.constants'
-import {WeatherConstants} from "../../../redux/Weather.constants";
 const initState = {
    // items: [],
   //  loading: false,
@@ -10,10 +9,10 @@ const initState = {
 
 export const FavoritesReducer = (state=initState, action) => {
     switch (action.type) {
-        case WeatherConstants.ADD_FAVORITE:
+        case FavoritesConstants.ADD_FAVORITE:
 
             return{
-          favItems:  [...state.favItems, action.key ]
+             favItems:  [...state.favItems, action.key ]
     }
     //   return {
                 //  ...state,
@@ -30,7 +29,7 @@ export const FavoritesReducer = (state=initState, action) => {
 
                 // [...state.favItems, state.items]
           //  };
-        case WeatherConstants.REMOVE_FAVORITE:
+        case FavoritesConstants.REMOVE_FAVORITE:
             //console.log(state.favItems)
 
             var found = state.favItems.find(function(element) {
@@ -56,7 +55,7 @@ export const FavoritesReducer = (state=initState, action) => {
              //   ],
           //  };
 
-        case WeatherConstants.LOAD_FAVORITES:
+        case FavoritesConstants.LOAD_FAVORITES:
           //  console.log(action.d);
 
             return {
@@ -64,6 +63,7 @@ export const FavoritesReducer = (state=initState, action) => {
                 favItems: [
                     ...state.favItems
                 ],
+
             };
         default:
             return state

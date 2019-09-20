@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import  { WeatherReducer,FavoritesReducer }    from '../features'
+import {Alert} from "../main";
 
 const RootReducer = combineReducers({
     WeatherReducer,
-    FavoritesReducer
-    // another reducer
+    FavoritesReducer,
+    Alert
+
 });
 
 /*const RootReducer = (state = {}, action) => {

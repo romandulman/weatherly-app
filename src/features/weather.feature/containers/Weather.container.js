@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component , useState } from "react";
 import { connect } from "react-redux";
 import SearchCity from "../components/SearchCity.component";
 import "../assets/stylesheets/Weather.stylesheet.css";
@@ -14,16 +14,25 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Spinner from "../../../main/common/Spinner";
+import queryString from 'query-string'
+
 
 class Weather extends Component {
   componentDidMount() {
+    const values = queryString.parse(this.props.location.search);
     const { dispatch } = this.props;
-    dispatch(LoadWeatherAction(215854, "Tel-Aviv"));
 
-    const geo =  navigator.geolocation.watchPosition(function(position) {
-      return position.coords.latitude
-    });
-    alert(geo);
+    if((values.id )===undefined){
+    dispatch(LoadWeatherAction(215854, "Tel Aviv"));
+  }else {
+      const decodedFav = (values.fav ==="true")
+      dispatch(LoadWeatherAction(values.id, values.city, decodedFav));
+    }
+
+  //  const geo =  navigator.geolocation.watchPosition(function(position) {
+    //  return position.coords.latitude
+   // });
+   // alert(geo);
   }
 
   render() {
@@ -47,9 +56,7 @@ class Weather extends Component {
             </Col>
             <Button
              onClick={() =>
-               // isFavorite
-                   dispatch(HandleFavorite(weatherData))
-                //  : dispatch(HandleFavorite(isFavorite))
+                 dispatch(HandleFavorite(weatherData,isFavorite))
               }
             >
               {isFavorite ? "remove from fav" : "add to Fav"}
@@ -57,8 +64,8 @@ class Weather extends Component {
           </Row>
           <Row>
             {weatherData.current &&
-              // weatherData.fData.DailyForecasts
               weatherData.forcast.DailyForecasts.map((data, index) => (
+
                 <Col sm={2}>
                   <DayItem
                     fromTemp={data.Temperature.Minimum.Value}
@@ -75,7 +82,7 @@ class Weather extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.WeatherReducer.isFavorite);
+ console.log(state.WeatherReducer.isFavorite);
   return {
     weatherData: state.WeatherReducer.items,
     isFavorite: state.WeatherReducer.isFavorite,
