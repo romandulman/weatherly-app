@@ -1,16 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
 
-$color1: #C8DAE6;
+
+$color1: #c8dae6;
 $color2: white;
-$color3: #B8B8B8;
-$color4: #FFCD41;
-$color5: #2092A9;
+$color3: #b8b8b8;
+$color4: #ffcd41;
+$color5: #2092a9;
 
 body {
   background-color: lighten($color1, 10%);
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -23,8 +26,8 @@ body {
 }
 
 .weather-card {
-
-  margin:  20px auto;
+  cursor: pointer;
+  margin: 20px auto;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
@@ -35,10 +38,9 @@ body {
   animation: appear 500ms ease-out forwards;
 
   h1 {
-
-    font-family: 'Lato', sans-serif;
-    font-weight:300;
-    font-size:80px;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-size: 80px;
     color: $color3;
     bottom: -111px;
     left: 35px;
@@ -46,23 +48,20 @@ body {
     transform: translateX(150px);
     animation: title-appear 500ms ease-out 500ms forwards;
   }
-
 }
 .cityText {
-
-  font-family: 'Lato', sans-serif;
-  font-weight:400;
-  font-size:38px;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 38px;
   color: lighten($color3, 10%);
-margin-left: 25px;
+  margin-left: 25px;
 
   animation: title-appear 1s ease-out 500ms forwards;
 }
 .weatherText {
-
-  font-family: 'Lato', sans-serif;
-  font-weight:300;
-  font-size:28px;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 28px;
   color: lighten($color3, 10%);
   margin-left: 25px;
 
@@ -82,32 +81,29 @@ margin-left: 25px;
 .sun {
   background: $color4;
   border-radius: 50%;
-  box-shadow: rgba(255,255,0,0.1) 0 0 0 4px;
-  animation: light 800ms ease-in-out infinite alternate, weather-icon-move 5s ease-in-out infinite;
+  box-shadow: rgba(255, 255, 0, 0.1) 0 0 0 4px;
+  animation: light 800ms ease-in-out infinite alternate,
+    weather-icon-move 5s ease-in-out infinite;
 }
 
 @keyframes light {
   from {
-    box-shadow: rgba(255,255,0,0.2) 0 0 0 10px;
+    box-shadow: rgba(255, 255, 0, 0.2) 0 0 0 10px;
   }
   to {
-    box-shadow: rgba(255,255,0,0.2) 0 0 0 17px;
+    box-shadow: rgba(255, 255, 0, 0.2) 0 0 0 17px;
   }
 }
 
 .cloud {
-  margin-right:60px;
+  margin-right: 60px;
   background: darken($color1, 5%);
   border-radius: 20px;
   width: 25px;
   height: 25px;
-  box-shadow:
-          darken($color1, 5%) 24px -6px 0 2px,
-          darken($color1, 5%) 10px 5px 0 5px,
-          darken($color1, 5%) 30px 5px 0 2px,
-          darken($color1, 5%) 11px -8px 0 -3px,
-          darken($color1, 5%) 25px 11px 0 -1px;
-
+  box-shadow: darken($color1, 5%) 24px -6px 0 2px,
+    darken($color1, 5%) 10px 5px 0 5px, darken($color1, 5%) 30px 5px 0 2px,
+    darken($color1, 5%) 11px -8px 0 -3px, darken($color1, 5%) 25px 11px 0 -1px;
 
   &:after {
     content: "";
@@ -126,16 +122,10 @@ margin-left: 25px;
 
 @keyframes rain {
   from {
-    box-shadow:
-            $color5 8px 0px,
-            $color5 32px -6px,
-            $color5 20px 0px;
+    box-shadow: $color5 8px 0px, $color5 32px -6px, $color5 20px 0px;
   }
   to {
-    box-shadow:
-            $color5 8px 6px,
-            $color5 32px 0px,
-            $color5 20px 6px;
+    box-shadow: $color5 8px 6px, $color5 32px 0px, $color5 20px 6px;
   }
 }
 
@@ -148,31 +138,30 @@ margin-left: 25px;
 .inspiration {
   margin-top: 80px;
   color: darken($color1, 25%);
-  font-family: 'Lato', sans-serif;
-  font-weight:300;
-  font-size:24px;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 24px;
   text-align: center;
 
-
   a {
-    color: #FF8F8F;
-    font-weight:400;
+    color: #ff8f8f;
+    font-weight: 400;
     animation: all 300ms ease-in-out;
   }
 }
 
 @keyframes appear {
   0% {
-    transform:scale(0);
+    transform: scale(0);
   }
   50% {
-    transform:scale(1.05)
+    transform: scale(1.05);
   }
   75% {
-    transform:scale(0.95)
+    transform: scale(0.95);
   }
   100% {
-    transform:scale(1)
+    transform: scale(1);
   }
 }
 
@@ -186,5 +175,3 @@ margin-left: 25px;
     transform: translateX(0px);
   }
 }
-
-

@@ -1,10 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+
+$font-stack: "Lato", sans-serif;
+
+$color1: #558b2f;
+$color2: white;
+$color3: #ecf0f1;
+$color4: #ffcd41;
+$color5: #0277bd;
+$color6: #27ae60;
+
 .brand-icon {
   width: 35px;
   margin-right: 10px;
   margin-left: 5px;
 }
 .brand-text {
-  font-family: "Roboto", sans-serif;
+  font-family: $font-stack;
   font-weight: 600;
   margin-top: 5px;
   float: right;
@@ -18,7 +29,7 @@
   width: fit-content;
 }
 .hiText {
-  color: white;
+  color: $color2;
 }
 .modal-90w {
   max-width: fit-content !important;
@@ -50,44 +61,40 @@ body {
 }
 
 .navbarButton {
-  font-family: "Roboto", sans-serif;
+  font-family: $font-stack;
   font-weight: 500;
-  color: #558b2f;
+  color: $color1;
   font-size: 14pt;
 }
 
 .navbarButtonMisc {
-  font-family: "Roboto", sans-serif;
+  font-family: $font-stack;
   font-weight: 500;
   color: #263238;
-  background-color: white;
-  border-color: white;
+  background-color: $color2;
+  border-color: $color2;
   font-size: 14pt;
 }
 
 .btn {
   position: relative;
-
   display: block;
   margin: 30px auto;
   padding: 6px;
-
   overflow: hidden;
-
   border-width: 0;
   outline: none;
   border-radius: 2px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-
-  background-color: #0277bd;
-  color: #ecf0f1;
+  background-color: $color5;
+  color: $color3;
 
   transition: background-color 0.3s;
 }
 
 .btn:hover,
 .btn:focus {
-  background-color: #27ae60;
+  background-color: $color6;
 }
 
 .btn > * {
@@ -101,19 +108,14 @@ body {
 
 .btn:before {
   content: "";
-
   position: absolute;
   top: 50%;
   left: 50%;
-
   display: block;
   width: 0;
   padding-top: 0;
-
   border-radius: 100%;
-
   background-color: rgba(236, 240, 241, 0.3);
-
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -124,11 +126,8 @@ body {
 .btn:active:before {
   width: 120%;
   padding-top: 120%;
-
   transition: width 0.2s ease-out, padding-top 0.2s ease-out;
 }
-
-/* Styles, not important */
 *,
 *:before,
 *:after {

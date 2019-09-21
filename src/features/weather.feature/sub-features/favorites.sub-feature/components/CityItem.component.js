@@ -1,26 +1,15 @@
-import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import '../assets/stylesheets/CityItem.stylesheet.scss'
-import Button from "react-bootstrap/es/Button";
+import React from "react";
+import "../assets/stylesheets/CityItem.stylesheet.scss";
 
+const CityItem = props => {
 
-const CityItem = props =>{
-    // const [temp, chnageTemp] = useState(props.temp);
-    //  onClick={()=>props.ChooseFavorite(props.id,props.cityName)}
-        return (
-              <div>
-                   <div className="weather-card ">
-                   <h1>{props.temp}º</h1>
-                  <div className="cityText">{props.cityName}</div>
-                  <div className="weatherText" >{props.weatherText}</div>
+  return (
+        <div className="weather-card " onClick={()=>props.ChooseFavorite(props.id, props.cityName)}>
+          <h1>{props.temp}º</h1>
+          <div className="cityText">{props.cityName}</div>
+          <div className="weatherText">{props.weatherText}</div>
+        </div>
+  )
+};
 
-              </div>
-           </div>
-        );
-
-       function ChooseFavorite() {
-         props.ChooseFavorite(props.id, props.cityName);
-       }
-      }
-
-export  default CityItem
+export default CityItem;

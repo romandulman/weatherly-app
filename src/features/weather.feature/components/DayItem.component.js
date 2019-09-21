@@ -1,35 +1,19 @@
-import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import '../assets/stylesheets/DayItem.stylesheet.scss'
+import React from "react";
+import "../assets/stylesheets/DayItem.stylesheet.scss";
 
+const DayItem = props => {
 
-const DayItem = props =>{
-
-   // {/* <div className="weather-wrapper">*/}
-
-    const [temp, chnageTemp] = useState(props.fromTemp);
-    const [temp2, chnageTemp2] = useState(props.toTemp);
-
-    return(
-
-           <div>
-                <div className="weather-card ">
-                    <div className="weather-icon"></div>
-                    <img src={"https://weatherly-res.s3.eu-central-1.amazonaws.com/weather-icons/" + props.iconNum+ ".png"} />
-                    <p>{props.day}</p>
-                    <h1>{temp}º</h1>
-                </div>
-            </div>
-    )
+  return (
+    <div>
+      <div className="weather-card ">
+        <div className="weather-icon">
+        <img src={"https://weatherly-res.s3.eu-central-1.amazonaws.com/weather-icons/" + props.iconNum + ".png"} alt="weather-icons"/></div>
+        <p>{props.day}</p>
+        <h1>{props.toTemp}º</h1>
+      </div>
+    </div>
+  );
 };
 
-export  default DayItem
+export default DayItem;
 
-/*
-<div>
-<button onClick={() => {chnageTemp(temp * 9/5 + 32 )
-    chnageTemp2(temp2 * 9/5 + 32 )
-}}>
-Change to F
-</button>
-</div>*/

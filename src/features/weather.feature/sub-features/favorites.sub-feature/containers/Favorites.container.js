@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  LoadFavoritesAction,
-  RemoveFavoriteAction
+  LoadFavoritesAction
 } from "../redux/Favorites.actions";
 import CityItem from "../components/CityItem.component";
 import Container from "react-bootstrap/es/Container";
@@ -30,7 +29,6 @@ class Favorites extends Component {
               favItems.map(data => (
                 <Col xl={2}>
                   <CityItem
-                    /*RemoveFavorite={this.RemoveFavorite}*/
                     ChooseFavorite={this.ChooseFavorite}
                     temp={data.current[0].Temperature.Metric.Value}
                     cityName={data.city}

@@ -5,7 +5,7 @@ const initState = {
 };
 export const FavoritesReducer = (state = initState, action) => {
   switch (action.type) {
-      case FavoritesConstants.ADD_FAVORITE:
+    case FavoritesConstants.ADD_FAVORITE:
       return { favItems: [...state.favItems, action.payload.weatherItem] };
 
     case FavoritesConstants.REMOVE_FAVORITE:

@@ -1,25 +1,19 @@
-import React ,{Component} from 'react';
-import Header from '../layout/header/Header.container'
+import React, { Component } from "react";
+import Header from "../layout/header/Header.container";
 import { connect } from "react-redux";
-import {alertClear} from "../common/alert/redux/Alert.actions";
-import {FavoritesPage} from '../../features'
-import {WeatherPage} from '../../features'
-import {history} from "../../helpers/history";
-import Toast from '../common/toast/Toast'
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect
-} from "react-router-dom";
+import { FavoritesPage } from "../../features";
+import { WeatherPage } from "../../features";
+import Toast from "../common/toast/Toast";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 class App extends Component {
   render() {
-    const {message} =this.props;
+    const { message } = this.props;
     return (
       <div className="App">
-        <Router >
-          <Header/>
-          {message && <Toast  message={message}/>}
+        <Router>
+          <Header />
+          {message && <Toast message={message} />}
           <Route path="/">
             <Redirect to="/home" />
           </Route>
@@ -30,7 +24,6 @@ class App extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => {
   return {
