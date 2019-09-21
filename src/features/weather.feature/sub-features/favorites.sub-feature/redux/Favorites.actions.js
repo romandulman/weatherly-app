@@ -23,11 +23,11 @@ export const LoadFavoritesAction = () =>{
 
 ///////////////////////////////////////////////////////
 const AddToFavorites = key => ({
-    type: FavoritesConstants.ADD_FAVORITE, key
+    type: FavoritesConstants.ADD_FAVORITE, payload:{ key }
 });
 
 const RemoveFavorite = city => ({
-    type: FavoritesConstants.REMOVE_FAVORITE, city
+    type: FavoritesConstants.REMOVE_FAVORITE, payload:{ city }
 });
 
 const LoadFavorites = () => ({

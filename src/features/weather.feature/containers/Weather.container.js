@@ -1,19 +1,23 @@
-import React, { Component , useState } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import SearchCity from "../components/SearchCity.component";
 import "../assets/stylesheets/Weather.stylesheet.css";
 import DayItem from "../components/DayItem.component";
 import {
   LoadWeatherAction,
-    HandleFavorite
- // AddFavotiteAction,
-//  RemoveFavoriteAction
+  HandleFavorite
 } from "../redux/Weather.actions";
 import Container from "react-bootstrap/es/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Spinner from "../../../main/common/Spinner";
+import Button from '@material-ui/core/Button';
+import Spinner from "../../../main/common/spinner/Spinner";
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
+import Fade from '@material-ui/core/Fade';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import queryString from 'query-string'
 
 
@@ -40,7 +44,7 @@ class Weather extends Component {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
     return (
       <div className="root">
-        <Container>
+        <Container fluid >
           <SearchCity />
           {loading && <Spinner />}
           <Row>
@@ -54,19 +58,29 @@ class Weather extends Component {
                   </div>
                 ))}
             </Col>
-            <Button
-             onClick={() =>
-                 dispatch(HandleFavorite(weatherData,isFavorite))
-              }
-            >
-              {isFavorite ? "remove from fav" : "add to Fav"}
-            </Button>
+
+
+            {!isFavorite && <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Add to Favorites">
+              <Fab color="primary" onClick={() =>
+                  dispatch(HandleFavorite(weatherData,isFavorite))} >
+                <AddIcon />
+              </Fab>
+            </Tooltip>}
+
+            {isFavorite && <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Remove from Favorites">
+            <Fab color="secondary" onClick={() =>
+                dispatch(HandleFavorite(weatherData,isFavorite))}>
+              <DeleteIcon />
+            </Fab>
+            </Tooltip>}
+
           </Row>
-          <Row>
+          <Row  >
+
             {weatherData.current &&
               weatherData.forcast.DailyForecasts.map((data, index) => (
 
-                <Col sm={2}>
+                <Col className="marginDiv" xl={2}>
                   <DayItem
                     fromTemp={data.Temperature.Minimum.Value}
                     toTemp={data.Temperature.Maximum.Value}

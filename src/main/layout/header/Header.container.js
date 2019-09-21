@@ -3,7 +3,7 @@ import "./assets/stylesheets/header.stylesheet.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown"
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from 'react-bootstrap/Button';
 
@@ -28,15 +28,15 @@ class Header extends Component {
                 bg="light"
 
             >
-                <Navbar.Brand><img src={BrandIcon} alt="clody" className="brand-icon"/><span className="brand-text"> Weatherly</span></Navbar.Brand>
+                <Navbar.Brand><img src={BrandIcon} alt="cloudy" className="brand-icon"/><div className="brand-text"> Weatherly</div></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav " className="justify-content-end">
                     <Nav>
                         <Nav.Link>
-                            <Link to="/home"><Button className="navbarButtonMisc">Home</Button></Link>
+                            <NavLink activeClassName="btn-nav-active" className="btn" to="/home">Home</NavLink>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to="/favorites"><Button className="navbarButtonMisc" >favorites</Button></Link>
+                            <NavLink activeClassName="btn-nav-active" className="btn" to="/favorites">Favorites</NavLink>
                         </Nav.Link>
                     </Nav>
 

@@ -1,26 +1,27 @@
 import {alertConstants} from "./Alert.constants";
 
-export function Alert(state = {}, action) {
+export function AlertReducer(state = {}, action) {
     switch (action.type) {
         case alertConstants.SUCCESS:
+            console.log(action.payload.message)
             return {
                 type: 'alert-success',
-                message: action.message
+                message: action.payload.message
             };
         case alertConstants.ERROR:
             return {
                 type: 'alert-danger',
-                message: action.message
+                message: action.payload.message
             };
         case alertConstants.CLEAR:
             return {};
         case alertConstants.ADDED_FAVORITE:
             return {
-                message: action.message
+                message: action.payload.message
             };
         case alertConstants.REMOVED_FAVORITE:
             return {
-                message: action.message
+                message: action.payload.message
             };
         default:
             return state

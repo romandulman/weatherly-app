@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
 import  { WeatherReducer,FavoritesReducer }    from '../features'
-import {Alert} from "../main";
+import {AlertReducer} from "../main/common/alert/redux/Alert.reducer";
 
 const RootReducer = combineReducers({
     WeatherReducer,
     FavoritesReducer,
-    Alert
-
+    AlertReducer
 });
 
 /*const RootReducer = (state = {}, action) => {
@@ -19,4 +18,3 @@ const RootReducer = combineReducers({
 
 export  default RootReducer
 
-// Added "combineReducers" for future app extension

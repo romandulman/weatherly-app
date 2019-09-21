@@ -1,15 +1,15 @@
 import { alertConstants } from "./Alert.constants";
 
-export const alertActions = {
-  success,
-  error,
-  clear,
-  addedFavorite,
-  removedFavorite
+export {
+  alertSuccess,
+    alertError,
+    alertClear,
+    alertAddedFavorite,
+    alertRemovedFavorite
 };
 
-const removedFavorite = message => ({ type: alertConstants.ADDED_FAVORITE, payload: message });
-const addedFavorite = message => ({ type: alertConstants.ADDED_FAVORITE, payload: message });
-const success = message => ({ type: alertConstants.SUCCESS, payload: message });
-const error = message => ({ type: alertConstants.SUCCESS, payload: message });
-const clear = () => ({ type: alertConstants.CLEAR });
+const alertRemovedFavorite = message => ({ type: alertConstants.ADDED_FAVORITE, payload: {message} });
+const alertAddedFavorite = message => ({ type: alertConstants.ADDED_FAVORITE, payload: message });
+const alertSuccess = message => ({ type: alertConstants.SUCCESS, payload:{message} });
+const alertError = message => ({ type: alertConstants.SUCCESS, payload: message });
+const alertClear = () => ({ type: alertConstants.CLEAR });

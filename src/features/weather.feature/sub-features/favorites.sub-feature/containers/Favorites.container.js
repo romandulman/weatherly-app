@@ -15,38 +15,32 @@ class Favorites extends Component {
     dispatch(LoadFavoritesAction());
   }
 
-/*  RemoveFavorite = id => {
-    const { dispatch } = this.props;
-    dispatch(RemoveFavoriteAction(id));
-  };*/
-
   ChooseFavorite = (id, city) => {
     const { history } = this.props;
     history.push(`/home?id=${id}&city=${city}&fav=true`);
-    //history.push('/home?fav=true')
   };
 
   render() {
     const { favItems } = this.props;
     return (
       <div className="root">
-        <Container>
+        <Container fluid>
           <Row>
             {favItems &&
               favItems.map(data => (
-                <Col sm={2}>
+                <Col xl={2}>
                   <CityItem
                     /*RemoveFavorite={this.RemoveFavorite}*/
                     ChooseFavorite={this.ChooseFavorite}
                     temp={data.current[0].Temperature.Metric.Value}
                     cityName={data.city}
+                    weatherText={data.current[0].WeatherText}
                     id={data.idKey}
                   />
                 </Col>
               ))}
           </Row>
         </Container>
-        <div>fav</div>
       </div>
     );
   }

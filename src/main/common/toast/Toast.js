@@ -5,8 +5,25 @@ import Col from "react-bootstrap/Col";
 import Toast from "react-bootstrap/Toast"
 import Button from "react-bootstrap/Button";
 
- export const Toast =props=> {
+const ToastAlert = props => {
     const [show, setShow] = useState(false);
+
+    var something = (()=> {
+        var executed = false;
+
+        return ()=> {
+            if (!executed) {
+                executed = true;
+            //    setShow(true)
+
+            }
+        };
+    })();
+
+    something()
+
+  const fireToast=()=>{
+    }
 
     return (
         <Row>
@@ -25,9 +42,8 @@ import Button from "react-bootstrap/Button";
 
                 </Toast>
             </Col>
-            <Col xs={6}>
-                <Button onClick={() => setShow(true)}>Show Toast</Button>
-            </Col>
         </Row>
     );
-}
+};
+
+export default ToastAlert

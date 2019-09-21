@@ -1,10 +1,12 @@
 import React ,{Component} from 'react';
 import Header from '../layout/header/Header.container'
-import {FavoritesPage} from '../../features'//weather.feature/sub-features/favorites.sub-feature/containers/Favorites.container'
+import { connect } from "react-redux";
+import {alertClear} from "../common/alert/redux/Alert.actions";
+import {FavoritesPage} from '../../features'
 import {WeatherPage} from '../../features'
-import {history} from "../../helpers/history";///weather.feature/containers/Weather.container'
-import {alertActions} from "../common/alert/redux/Alert.actions";
-
+import {history} from "../../helpers/history";
+import Toast from '../common/toast/Toast'
+  ///history={history}
 import {
   BrowserRouter as Router,
   Route,
@@ -12,11 +14,23 @@ import {
 } from "react-router-dom";
 
 class App extends Component {
+  constructor(props){
+    super(props);
+  const { dispatch } = this.props;
+
+history.listen((location, action) => {
+  // clear alert on location change
+  dispatch(alertClear());
+});
+}
   render() {
+    const {message} =this.props;
+
     return (
       <div className="App">
-        <Router history={history}>
+        <Router >
           <Header/>
+          {message && <Toast  title={message}/>}
           <Route path="/">
             <Redirect to="/home" />
           </Route>
@@ -28,4 +42,13 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+
+  return {
+    message: state.AlertReducer.message
+
+  };
+};
+
+export default connect(mapStateToProps)(App);

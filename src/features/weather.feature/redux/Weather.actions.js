@@ -1,27 +1,31 @@
 import { WeatherConstants } from './Weather.constants';
 import { reqCityWeather, getDailyForcasts} from '../api/Weather.api'
 import {AddFavotiteAction, RemoveFavoriteAction} from '../sub-features/favorites.sub-feature/redux/Favorites.actions'
+import {
+    alertSuccess,
+    alertError,
+    alertClear,
+    alertAddedFavorite,
+    alertRemovedFavorite
+} from '../../../main/common/alert/redux/Alert.actions'
 
 
 export const LoadWeatherAction = (id,city,fav) => {
     console.log(fav)
-
     return dispatch => {
         dispatch(fetchWeatherBegin());
 
         reqCityWeather(id).then(
             current=> {
                 getDailyForcasts(id).then(
-
                     forcast => {
-                      //  console.log(forcast)
-
                         dispatch(loadWeatherData(current,forcast,city,id,fav));
+                        dispatch(alertSuccess('Fetched Weather Data'))
                     })
             },
              error => {
                   dispatch(fetchWeatherFailure(error));
-                //dispatch(alertActions.error(error));
+                  dispatch(alertError(error));
             }
         )
 
@@ -49,7 +53,7 @@ export const LoadFavoiteAction = favData =>{
         dispatch(loadFavorite(favData))
 
     }
-}
+};
 
 ///////////////////////////////////////////////////////
 
