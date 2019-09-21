@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+
+$font-stack: 'Lato', sans-serif;
+
+.default-icon{
+  float: left;
+  width: 100px;
+}
+
+.default-city{
+  font-family: $font-stack;
+  font-weight:500;
+  font-size:14pt;
+}
+
+.default-temp{
+  font-family: $font-stack;
+  font-weight:500;
+  font-size:24pt;
+}
+
+.default-container{
+  max-width: fit-content;
+}
+.default-text-cont{
+  text-align: left;
+  float: right;
+}

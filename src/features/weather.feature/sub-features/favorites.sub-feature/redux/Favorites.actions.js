@@ -1,9 +1,9 @@
 import {FavoritesConstants} from './Favorites.constants';
 
 
-export const AddFavotiteAction = key => {
+export const AddFavotiteAction = weatherItem => {
     return dispatch => {
-        dispatch(AddToFavorites(key))
+        dispatch(AddToFavorites(weatherItem))
     };
 };
 
@@ -20,10 +20,11 @@ export const LoadFavoritesAction = () =>{
 };
 
 
-
 ///////////////////////////////////////////////////////
-const AddToFavorites = key => ({
-    type: FavoritesConstants.ADD_FAVORITE, payload:{ key }
+
+
+const AddToFavorites = weatherItem => ({
+    type: FavoritesConstants.ADD_FAVORITE, payload:{ weatherItem }
 });
 
 const RemoveFavorite = city => ({

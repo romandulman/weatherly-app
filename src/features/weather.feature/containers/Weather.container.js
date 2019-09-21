@@ -1,64 +1,65 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SearchCity from "../components/SearchCity.component";
-import "../assets/stylesheets/Weather.stylesheet.css";
+import Search from "../containers/Search.container";
+import queryString from 'query-string'
+import "../assets/stylesheets/Weather.stylesheet.scss";
 import DayItem from "../components/DayItem.component";
 import {
   LoadWeatherAction,
+  LoadCurrentLocationWeather,
   HandleFavorite
 } from "../redux/Weather.actions";
 import Container from "react-bootstrap/es/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from '@material-ui/core/Button';
 import Spinner from "../../../main/common/spinner/Spinner";
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
-import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
-import queryString from 'query-string'
+
 
 
 class Weather extends Component {
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
     const { dispatch } = this.props;
-
     if((values.id )===undefined){
-    dispatch(LoadWeatherAction(215854, "Tel Aviv"));
+      dispatch( LoadCurrentLocationWeather())
+      dispatch(LoadWeatherAction(215854, "Tel Aviv"));
   }else {
-      const decodedFav = (values.fav ==="true")
+      const decodedFav = (values.fav ==="true");
       dispatch(LoadWeatherAction(values.id, values.city, decodedFav));
     }
-
-  //  const geo =  navigator.geolocation.watchPosition(function(position) {
-    //  return position.coords.latitude
-   // });
-   // alert(geo);
   }
 
   render() {
     const { dispatch, weatherData, isFavorite, loading } = this.props;
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+
     return (
       <div className="root">
-        <Container fluid >
-          <SearchCity />
-          {loading && <Spinner />}
+            <Search/>
+
+              <Container>
+              <div className="spinner-container"> {loading && <Spinner />}</div>
+          </Container>
+          <Container fluid >
           <Row>
             <Col>
               {weatherData.current &&
                 weatherData.current.map(data => (
-                  <div>
-                    <div>{weatherData.city}</div>
-                    <div>{data.Temperature.Metric.Value} C°</div>
-                    <div>{data.WeatherText} </div>
-                  </div>
+                  <div className='default-container'>
+
+                      <img className='default-icon' src={"https://weatherly-res.s3.eu-central-1.amazonaws.com/weather-icons/" + data.WeatherIcon+ ".png"} />
+                      <div className="default-text-cont">
+                    <p className='default-city'>{weatherData.city}</p>
+                    <p className='default-temp'>{data.Temperature.Metric.Value} C°</p>
+                    <p className="default-con">{data.WeatherText} </p>
+                  </div></div>
                 ))}
             </Col>
-
 
             {!isFavorite && <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Add to Favorites">
               <Fab color="primary" onClick={() =>
@@ -73,15 +74,14 @@ class Weather extends Component {
               <DeleteIcon />
             </Fab>
             </Tooltip>}
-
           </Row>
-          <Row  >
+          <Row>
 
             {weatherData.current &&
               weatherData.forcast.DailyForecasts.map((data, index) => (
-
                 <Col className="marginDiv" xl={2}>
                   <DayItem
+                      iconNum={data.Day.Icon}
                     fromTemp={data.Temperature.Minimum.Value}
                     toTemp={data.Temperature.Maximum.Value}
                     day={days[index]}

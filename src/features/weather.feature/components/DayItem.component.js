@@ -14,7 +14,8 @@ const DayItem = props =>{
 
            <div>
                 <div className="weather-card ">
-                    <div className="weather-icon sun"></div>
+                    <div className="weather-icon"></div>
+                    <img src={"https://weatherly-res.s3.eu-central-1.amazonaws.com/weather-icons/" + props.iconNum+ ".png"} />
                     <p>{props.day}</p>
                     <h1>{temp}º</h1>
                 </div>

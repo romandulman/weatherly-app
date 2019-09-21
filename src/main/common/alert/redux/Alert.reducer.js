@@ -5,12 +5,10 @@ export function AlertReducer(state = {}, action) {
         case alertConstants.SUCCESS:
             console.log(action.payload.message)
             return {
-                type: 'alert-success',
                 message: action.payload.message
             };
         case alertConstants.ERROR:
             return {
-                type: 'alert-danger',
                 message: action.payload.message
             };
         case alertConstants.CLEAR:

@@ -33,28 +33,30 @@ body {
   background-color: $color2;
   box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
   animation: appear 500ms ease-out forwards;
-
+img {
+  margin-top: 20px;
+}
   h1 {
+    margin-top:50px;
+    margin-left: 20px;
 
     font-family: 'Lato', sans-serif;
     font-weight:300;
     font-size:80px;
     color: $color3;
-    bottom: -111px;
-    left: 35px;
     opacity: 0;
     transform: translateX(150px);
     animation: title-appear 500ms ease-out 500ms forwards;
   }
 
   p {
-    position: absolute;
+    margin-left: 20px;
     font-family: 'Lato', sans-serif;
     font-weight:300;
     font-size:28px;
-    color: lighten($color3, 10%);
-    bottom: 0;
-    left: 35px;
+    color: lighten($color3, 0%);
+
+
     animation: title-appear 1s ease-out 500ms forwards;
   }
 }

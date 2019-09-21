@@ -1,6 +1,8 @@
 import { WeatherConstants } from './Weather.constants';
-import { reqCityWeather, getDailyForcasts} from '../api/Weather.api'
+import { reqCityWeather, getDailyForcasts,getWeatherByGeo} from '../api/Weather.api'
 import {AddFavotiteAction, RemoveFavoriteAction} from '../sub-features/favorites.sub-feature/redux/Favorites.actions'
+import { getCurrentPosition } from "../../../utils/geo.util";
+
 import {
     alertSuccess,
     alertError,
@@ -10,27 +12,38 @@ import {
 } from '../../../main/common/alert/redux/Alert.actions'
 
 
-export const LoadWeatherAction = (id,city,fav) => {
-    console.log(fav)
-    return dispatch => {
-        dispatch(fetchWeatherBegin());
+export const LoadWeatherAction = (id, city, fav) => {
+  return dispatch => {
+    dispatch(fetchWeatherBegin());
+    reqCityWeather(id).then(
+      current => {
+        getDailyForcasts(id).then(forcast => {
+          dispatch(loadWeatherData(current, forcast, city, id, fav));
+        });
+      },
+      error => {
+        dispatch(fetchWeatherFailure(error));
+        dispatch(alertError(error));
+      }
+    );
+  };
+};
 
-        reqCityWeather(id).then(
-            current=> {
-                getDailyForcasts(id).then(
-                    forcast => {
-                        dispatch(loadWeatherData(current,forcast,city,id,fav));
-                        dispatch(alertSuccess('Fetched Weather Data'))
-                    })
-            },
-             error => {
-                  dispatch(fetchWeatherFailure(error));
-                  dispatch(alertError(error));
-            }
-        )
-
-
-    };
+export const LoadCurrentLocationWeather = () => {
+  return dispatch => {
+    getCurrentPosition().then(
+      coords => {
+        getWeatherByGeo(coords.latitude, coords.longitude).then(location => {
+          console.log(location);
+        });
+      },
+      error => {
+        dispatch(
+          alertError("Cannot get Geo Location, Setting default Location...")
+        );
+      }
+    );
+  };
 };
 
 export const HandleFavorite =(handle,isFavorite)=>{
@@ -39,9 +52,11 @@ export const HandleFavorite =(handle,isFavorite)=>{
         if(!isFavorite){
             dispatch(AddFavotiteAction(handle));
             dispatch(TagFavorite(handle.city))
+            dispatch(alertSuccess("Added to Favorites"));
         }else{
            dispatch(RemoveFavoriteAction(handle.city))
            dispatch(UntagFavorite(handle.city))
+            dispatch(alertSuccess("Removed to Favorites"));
 
         }
     }
