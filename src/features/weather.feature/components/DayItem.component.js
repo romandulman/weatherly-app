@@ -2,7 +2,6 @@ import React from "react";
 import "../assets/stylesheets/DayItem.stylesheet.scss";
 
 const DayItem = props => {
-
   return (
     <div>
       <div className="weather-card ">

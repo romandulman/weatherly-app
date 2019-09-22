@@ -45,7 +45,7 @@ export const LoadCurrentLocationWeather = () => {
         });
       },
       error => {
-        dispatch(alertError("Cannot get Geo Location, Setting default Location..."))
+        dispatch(alertError("Cannot get Geo Location, Setting default Location..."));
         dispatch(LoadWeatherAction(215854, "Tel Aviv"));
         setTimeout(function(){
           dispatch(alertClear())
@@ -60,12 +60,10 @@ export const HandleFavorite = (handle, isFavorite) => {
     if (!isFavorite) {
       dispatch(AddFavotiteAction(handle));
       dispatch(TagFavorite(handle.city));
-      dispatch(alertSuccess("Added to Favorites"))
+      dispatch(alertSuccess("Added to Favorites"));
       setTimeout(function(){
         dispatch(alertClear())
       }, 3000);
-
-
     } else {
       dispatch(RemoveFavoriteAction(handle.city));
       dispatch(UntagFavorite(handle.city));
