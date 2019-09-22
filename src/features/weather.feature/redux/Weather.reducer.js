@@ -38,7 +38,7 @@ export const WeatherReducer = (state = initState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
 
     case WeatherConstants.TAG_FAVORITE:

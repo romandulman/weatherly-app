@@ -33,7 +33,7 @@ class Weather extends Component {
   }
 
   render() {
-    const { dispatch, weatherData, isFavorite, loading } = this.props;
+    const { dispatch, weatherData, isFavorite, loading, error } = this.props;
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
 
     return (
@@ -45,6 +45,7 @@ class Weather extends Component {
         <Container fluid>
           <Row>
             <Col>
+              {error && <h1>ERROR!:{error}</h1>}
               {weatherData.current &&
                 weatherData.current.map(data => (
                   <div className="default-container">
