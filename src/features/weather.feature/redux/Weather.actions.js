@@ -60,9 +60,7 @@ export const HandleFavorite = (handle, isFavorite) => {
     if (!isFavorite) {
       dispatch(AddFavotiteAction(handle));
       dispatch(TagFavorite(handle.city));
-      dispatch(alertSuccess("Added to Favorites")
-          .then()
-      )
+      dispatch(alertSuccess("Added to Favorites"))
       setTimeout(function(){
         dispatch(alertClear())
       }, 3000);
