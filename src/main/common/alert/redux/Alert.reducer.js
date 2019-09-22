@@ -3,7 +3,7 @@ import { alertConstants } from "./Alert.constants";
 export function AlertReducer(state = {}, action) {
   switch (action.type) {
     case alertConstants.SUCCESS:
-      console.log(action.payload.message);
+
       return {
         message: action.payload.message
       };

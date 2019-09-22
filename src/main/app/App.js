@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 class App extends Component {
   render() {
     const { message } = this.props;
+
     return (
       <div className="App">
         <Router>

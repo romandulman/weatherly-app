@@ -13,7 +13,9 @@ import { getCurrentPosition } from "../../../utils/geo.util";
 import {
   alertSuccess,
   alertError,
+    alertClear
 } from "../../../main/common/alert/redux/Alert.actions";
+
 
 export const LoadWeatherAction = (id, city, fav) => {
   return dispatch => {
@@ -26,7 +28,9 @@ export const LoadWeatherAction = (id, city, fav) => {
       },
       error => {
         dispatch(fetchWeatherFailure(error));
-        dispatch(alertError(error));
+        setTimeout(function(){
+          dispatch(alertClear())
+        }, 3000);
       }
     );
   };
@@ -34,16 +38,21 @@ export const LoadWeatherAction = (id, city, fav) => {
 
 export const LoadCurrentLocationWeather = () => {
   return dispatch => {
+
     getCurrentPosition().then(
       coords => {
-        getWeatherByGeo(52.520007, 13.404954).then(location => {
-         // dispatch()
+        getWeatherByGeo(coords.latitude, coords.longitude).then(location => {
+          dispatch(LoadWeatherAction(location.Key, location.LocalizedName));
+        console.log(location)
         });
       },
       error => {
-        dispatch(
-          alertError("Cannot get Geo Location, Setting default Location...")
-        );
+        dispatch(alertError("Cannot get Geo Location, Setting default Location..."))
+        dispatch(LoadWeatherAction(215854, "Tel Aviv"));
+        setTimeout(function(){
+          dispatch(alertClear())
+        }, 3000);
+
       }
     );
   };
@@ -51,15 +60,22 @@ export const LoadCurrentLocationWeather = () => {
 
 export const HandleFavorite = (handle, isFavorite) => {
   return dispatch => {
-    //   if (handle){
     if (!isFavorite) {
       dispatch(AddFavotiteAction(handle));
       dispatch(TagFavorite(handle.city));
-      dispatch(alertSuccess("Added to Favorites"));
+      dispatch(alertSuccess("Added to Favorites"))
+      setTimeout(function(){
+        dispatch(alertClear())
+      }, 3000);
+
+
     } else {
       dispatch(RemoveFavoriteAction(handle.city));
       dispatch(UntagFavorite(handle.city));
-      dispatch(alertSuccess("Removed to Favorites"));
+      dispatch(alertSuccess("Removed from Favorites"));
+      setTimeout(function(){
+        dispatch(alertClear())
+      }, 3000);
     }
   };
 };

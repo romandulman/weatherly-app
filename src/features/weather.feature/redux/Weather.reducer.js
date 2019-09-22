@@ -22,9 +22,6 @@ export const WeatherReducer = (state = initState, action) => {
         return element === action.payload.city;
       });
 
-      console.log(found === action.payload.city);
-
-      // console.log(data);
       return {
         ...state,
         loading: false,
@@ -34,7 +31,6 @@ export const WeatherReducer = (state = initState, action) => {
           city: action.payload.city,
           idKey: action.payload.id
         },
-        // isFavorite: state.isFavorite
         isFavorite: found === action.payload.city //action.payload.fav
       };
 

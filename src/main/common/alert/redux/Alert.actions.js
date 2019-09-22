@@ -6,7 +6,7 @@ const alertSuccess = message => ({
   payload: { message }
 });
 const alertError = message => ({
-  type: alertConstants.SUCCESS,
+  type: alertConstants.ERROR,
   payload: { message }
 });
 const alertClear = () => ({ type: alertConstants.CLEAR });

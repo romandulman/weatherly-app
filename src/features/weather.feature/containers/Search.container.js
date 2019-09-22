@@ -14,14 +14,17 @@ class Search extends Component {
 
   onFieldChange = e => {
     const { value } = e.target;
-
-    if (value.length > 0 && this.isEnlish(value)) {
-      findCity(value).then(sug => {
-        this.setState({ list: sug });
-      });
+    if (value.length > 0) {
+      if (this.isEnlish(value)) {
+        findCity(value).then(sug => {
+          this.setState({ list: sug });
+        });
+      } else {
+        this.inputTitle.value = "";
+        alert("The input is too short or Not in English!");
+      }
     } else {
-      this.inputTitle.value = "";
-      alert(" enter only in english");
+      this.setState({ list: "" });
     }
   };
 

@@ -25,7 +25,7 @@ class Weather extends Component {
     const { dispatch } = this.props;
     if (values.id === undefined) {
       dispatch(LoadCurrentLocationWeather());
-      dispatch(LoadWeatherAction(215854, "Tel Aviv"));
+    //  dispatch(LoadWeatherAction(215854, "Tel Aviv"));
     } else {
       const decodedFav = values.fav === "true";
       dispatch(LoadWeatherAction(values.id, values.city, decodedFav));
@@ -39,9 +39,7 @@ class Weather extends Component {
     return (
       <div className="root">
         <Search />
-
           <div className="spinner-container"> {loading && <Spinner />}</div>
-
         <Container fluid>
           <Row>
             <Col>

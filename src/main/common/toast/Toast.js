@@ -13,16 +13,12 @@ const useStyles = makeStyles(theme => ({
 const ToastAlert = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+    React.useEffect(() => {
+            setOpen(true);
 
- const foo = true;
+    },[]);
 
-  React.useEffect(() => {
-    setOpen(true);
-
-
-  }, []);
-
-  function handleClose(event, reason) {
+  function handleClose() {
     setOpen(false);
   }
 
@@ -34,8 +30,7 @@ const ToastAlert = props => {
           horizontal: "left"
         }}
         open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
+          onClose={handleClose}
         ContentProps={{
           "aria-describedby": "message-id"
         }}
