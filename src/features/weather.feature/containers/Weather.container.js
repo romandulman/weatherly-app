@@ -24,8 +24,8 @@ class Weather extends Component {
     const values = queryString.parse(this.props.location.search);
     const { dispatch } = this.props;
     if (values.id === undefined) {
-      dispatch(LoadCurrentLocationWeather());
-    //  dispatch(LoadWeatherAction(215854, "Tel Aviv"));
+      //dispatch(LoadCurrentLocationWeather()); // load with Geo Location
+      dispatch(LoadWeatherAction(215854, "Tel Aviv"));
     } else {
       const decodedFav = values.fav === "true";
       dispatch(LoadWeatherAction(values.id, values.city, decodedFav));

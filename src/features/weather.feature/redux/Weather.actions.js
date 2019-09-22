@@ -43,7 +43,6 @@ export const LoadCurrentLocationWeather = () => {
       coords => {
         getWeatherByGeo(coords.latitude, coords.longitude).then(location => {
           dispatch(LoadWeatherAction(location.Key, location.LocalizedName));
-        console.log(location)
         });
       },
       error => {
