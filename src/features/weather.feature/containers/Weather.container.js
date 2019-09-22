@@ -39,6 +39,8 @@ class Weather extends Component {
     return (
       <div className="root">
         <Search />
+        <br/>
+        <br/>
           <div className="spinner-container"> {loading && <Spinner />}</div>
         <Container fluid>
           <Row>
