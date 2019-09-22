@@ -3,7 +3,6 @@ import { WeatherConstants } from "./Weather.constants";
 const initState = {
   items: [],
   loading: false,
-  error: null,
   isFavorite: false,
   favItemsList: []
 };
@@ -13,8 +12,7 @@ export const WeatherReducer = (state = initState, action) => {
     case WeatherConstants.FETCH_WEATHER_BEGIN:
       return {
         ...state,
-        loading: true,
-        error: null
+        loading: true
       };
 
     case WeatherConstants.FETCH_WEATHER_SUCCESS:
@@ -37,8 +35,7 @@ export const WeatherReducer = (state = initState, action) => {
     case WeatherConstants.FETCH_WEATHER_FAILURE:
       return {
         ...state,
-        loading: false,
-        error: action.payload.error,
+        loading: false
       };
 
     case WeatherConstants.TAG_FAVORITE:

@@ -45,7 +45,6 @@ class Weather extends Component {
         <Container fluid>
           <Row>
             <Col>
-              {error && <h1>ERROR!:{error}</h1>}
               {weatherData.current &&
                 weatherData.current.map(data => (
                   <div className="default-container">
@@ -123,8 +122,7 @@ const mapStateToProps = state => {
   return {
     weatherData: state.WeatherReducer.items,
     isFavorite: state.WeatherReducer.isFavorite,
-    loading: state.WeatherReducer.loading,
-    error: state.WeatherReducer.error
+    loading: state.WeatherReducer.loading
   };
 };
 export default connect(mapStateToProps)(Weather);
