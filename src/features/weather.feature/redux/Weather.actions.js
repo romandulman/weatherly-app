@@ -77,11 +77,6 @@ export const HandleFavorite = (handle, isFavorite) => {
   };
 };
 
-export const LoadFavoiteAction = favData => {
-  return dispatch => {
-    dispatch(loadFavorite(favData));
-  };
-};
 
 ///////////////////////////////////////////////////////
 
@@ -109,7 +104,3 @@ const UntagFavorite = city => ({
   payload: { city }
 });
 
-const loadFavorite = favData => ({
-  type: WeatherConstants.LOAD_FAVOTITE,
-  payload: { favData }
-});
