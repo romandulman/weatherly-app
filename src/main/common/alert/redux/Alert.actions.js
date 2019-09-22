@@ -9,7 +9,9 @@ const alertError = message => ({
   type: alertConstants.ERROR,
   payload: { message }
 });
-const alertClear = () => ({ type: alertConstants.CLEAR });
+const alertClear = () => ({
+  type: alertConstants.CLEAR
+});
 
 export {
   alertSuccess,

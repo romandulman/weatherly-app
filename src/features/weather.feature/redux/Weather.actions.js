@@ -38,10 +38,9 @@ export const LoadWeatherAction = (id, city, fav) => {
 
 export const LoadCurrentLocationWeather = () => {
   return dispatch => {
-
     getCurrentPosition().then(
-      coords => {
-        getWeatherByGeo(coords.latitude, coords.longitude).then(location => {
+      position => {
+        getWeatherByGeo(position.coords.latitude, position.coords.longitude).then(location => {
           dispatch(LoadWeatherAction(location.Key, location.LocalizedName));
         });
       },
@@ -51,7 +50,6 @@ export const LoadCurrentLocationWeather = () => {
         setTimeout(function(){
           dispatch(alertClear())
         }, 3000);
-
       }
     );
   };
@@ -62,7 +60,9 @@ export const HandleFavorite = (handle, isFavorite) => {
     if (!isFavorite) {
       dispatch(AddFavotiteAction(handle));
       dispatch(TagFavorite(handle.city));
-      dispatch(alertSuccess("Added to Favorites"))
+      dispatch(alertSuccess("Added to Favorites")
+          .then()
+      )
       setTimeout(function(){
         dispatch(alertClear())
       }, 3000);

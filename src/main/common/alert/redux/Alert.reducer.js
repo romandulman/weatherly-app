@@ -12,6 +12,7 @@ export function AlertReducer(state = {}, action) {
         message: action.payload.message
       };
     case alertConstants.CLEAR:
+
       return {};
     default:
       return state;

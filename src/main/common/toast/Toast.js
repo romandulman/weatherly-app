@@ -14,8 +14,7 @@ const ToastAlert = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
     React.useEffect(() => {
-            setOpen(true);
-
+      setOpen(true);
     },[]);
 
   function handleClose() {
