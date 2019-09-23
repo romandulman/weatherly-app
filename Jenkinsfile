@@ -82,7 +82,7 @@ pipeline {
               sh 'ssh -v ubuntu@3.122.220.39'
               sh 'ssh ubuntu@3.122.220.39 sudo docker pull repos.opotel.com/weatherly' + ":$BUILD_NUMBER"
               sh 'ssh ubuntu@3.122.220.39 sudo docker rm --force repos.opotel.com/weatherly'
-              sh 'ssh ubuntu@3.122.220.39 sudo docker run --detach  --name weatherly  --restart=always --env "VIRTUAL_HOST=weatherly.romandulman.com"   repos.opotel.com/weatherly + ":$BUILD_NUMBER"
+              sh 'ssh ubuntu@3.122.220.39 sudo docker run --detach  --name weatherly  --restart=always --env "VIRTUAL_HOST=weatherly.romandulman.com"   repos.opotel.com/weatherly' + ":$BUILD_NUMBER"
           }
        }
    }
