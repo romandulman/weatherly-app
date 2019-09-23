@@ -24,7 +24,7 @@ pipeline {
   stage('Unit Tests'){
       /* React Frontend Unit Tests Analysis  */
       steps {
-        sh 'cd frontend && npm install && npm test'
+        sh 'cd frontend && npm install' /* && npm test'  */
       }
   }
 
@@ -74,7 +74,7 @@ pipeline {
 
   } */
 
- /* Production Env; Deploy Docker image to AWS Production Server and run */
+ /* Production Env; Deploy Docker image to AWS Production Server and run
    stage ('Deploy To AWS') {
        steps{
           sshagent(credentials : ['AWS-eu-central-key']) {
@@ -85,7 +85,7 @@ pipeline {
               sh 'ssh ubuntu@3.122.220.39 sudo docker run --detach  --name weatherly  --restart=always --env "VIRTUAL_HOST=weatherly.romandulman.com"   repos.opotel.com/weatherly' + ":$BUILD_NUMBER"
           }
        }
-   }
+   }*/
 
   }
 }
