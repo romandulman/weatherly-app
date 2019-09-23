@@ -1,0 +1,92 @@
+pipeline {
+   environment {
+             registry = '****/weatherly'
+             registryCredential = '****'
+             registyAddr = '****'
+             scannerHome = tool 'SonarQubeScanner'
+   }
+  agent {
+    node {
+      label '****-jenkins-dind-nodejs-slave'
+    }
+  }
+
+  stages {
+    stage ('Verify Tools'){
+      steps {
+            parallel (
+              node: { sh "npm -v" },
+              docker: { sh "docker -v" }
+            )
+      }
+    }
+
+  stage('Unit Tests'){
+      /* React Frontend Unit Tests Analysis  */
+      steps {
+        sh 'cd frontend && npm install' /* && npm test'  */
+      }
+  }
+
+  stage('Static Code Analysis'){
+      /* SonarQube Analysis  */
+      steps {
+            withSonarQubeEnv('****-SonarQube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+            timeout(time: 1, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+            }
+      }
+  }
+
+  stage('Build Frontend'){
+      /* Build React Frontend  */
+      steps{
+           sh 'cd frontend && npm run build'
+      }
+  }
+
+  stage('Build Docker Image & Publish'){
+      /* Build Docker Image & Publish to Nexus Local  Private Docker registry  */
+      steps{
+             script {
+               dockerImage = docker.build(registry + ":$BUILD_NUMBER" ,"-f Dockerfile .")
+                docker.withRegistry( 'https://****', registryCredential ) {
+                  dockerImage.push()
+                }
+             }
+      }
+  }
+
+
+/* QA Env
+ stage ('Deploy Docker Image To Test Server') {
+ QA Env: Deploy Docker image to Stage/Test Server and test
+     agent {
+          node {
+            label 'app-test-jenkins-dind'
+          }
+     }
+     steps {
+      sh 'docker pull ****/weatherly' + ":$BUILD_NUMBER"
+     }
+
+  } */
+
+ /* Production Env; Deploy Docker image to AWS Production Server and run
+   stage ('Deploy To AWS') {
+       steps{
+          sshagent(credentials : ['AWS-****']) {
+              sh 'ssh -o StrictHostKeyChecking=no ubuntu@**** uptime'
+              sh 'ssh -v ubuntu@****'
+              sh 'ssh ubuntu@**** sudo docker pull ****/weatherly' + ":$BUILD_NUMBER"
+              sh 'ssh ubuntu@**** sudo docker rm --force ****/weatherly'
+              sh 'ssh ubuntu@**** sudo docker run --detach  --name weatherly  --restart=always --env "VIRTUAL_HOST=weatherly.romandulman.com"   ****/weatherly' + ":$BUILD_NUMBER"
+          }
+       }
+   }*/
+
+  }
+}
+
