@@ -60,9 +60,10 @@ pipeline {
   }
 
 
-/* QA Env
+/* QA Env */
+
  stage ('Deploy Docker Image To Test Server') {
- QA Env: Deploy Docker image to Stage/Test Server and test
+/* QA Env: Deploy Docker image to Stage/Test Server for load testing */
      agent {
           node {
             label 'app-test-jenkins-dind'
@@ -70,11 +71,20 @@ pipeline {
      }
      steps {
       sh 'docker pull ****/weatherly' + ":$BUILD_NUMBER"
+      sh 'sudo docker rm --force ****/weatherly-test'
+      sh 'docker run --detach  --name weatherly-test  -p 3000:443  ****/weatherly'
      }
+  }
 
-  } */
 
- /* Production Env; Deploy Docker image to AWS Production Server and run
+  stage('Load Test'){
+      steps{
+        sh 'artillery quick --count 30 -n 20 http://****:3000/'
+      }
+  }
+
+
+ /* Production Env; Deploy Docker image to AWS Production Server and run */
    stage ('Deploy To AWS') {
        steps{
           sshagent(credentials : ['AWS-****']) {
@@ -85,7 +95,7 @@ pipeline {
               sh 'ssh ubuntu@**** sudo docker run --detach  --name weatherly  --restart=always --env "VIRTUAL_HOST=weatherly.romandulman.com"   ****/weatherly' + ":$BUILD_NUMBER"
           }
        }
-   }*/
+   }
 
   }
 }
