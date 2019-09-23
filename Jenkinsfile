@@ -60,9 +60,9 @@ pipeline {
   }
 
 
-/* QA Env */
-/* stage ('Deploy Docker Image To Test Server') {
-/* QA Env: Deploy Docker image to Stage/Test Server and test */
+/* QA Env
+ stage ('Deploy Docker Image To Test Server') {
+ QA Env: Deploy Docker image to Stage/Test Server and test
      agent {
           node {
             label 'app-test-jenkins-dind'
@@ -72,7 +72,7 @@ pipeline {
       sh 'docker pull repos.opotel.com/weatherly' + ":$BUILD_NUMBER"
      }
 
-  }*/
+  } */
 
  /* Production Env; Deploy Docker image to AWS Production Server and run */
    stage ('Deploy To AWS') {
