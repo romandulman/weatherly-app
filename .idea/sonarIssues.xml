@@ -23,7 +23,112 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/Jenkinsfile">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/README.md">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/categories.feature/categories.containers/AddEditCat.container.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/categories.feature/categories.containers/Categories.container.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/categories.feature/categories.redux/Categories.actions.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/categories.feature/categories.redux/Categories.constants.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/categories.feature/categories.redux/Categories.reducer.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/index.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/locations.feature/locations.containers/AddEditLoc.container.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/locations.feature/locations.containers/Locations.container.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/locations.feature/locations.redux/Locations.actions.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/locations.feature/locations.redux/Locations.constants.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/features/locations.feature/locations.redux/Locations.reducer.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/helpers/initial-data.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/helpers/root-reducer.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/helpers/store.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/main/app/App.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/main/common/SplashDialog.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/main/layout/footer.layout/Footer.layout.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../locationer-2019/src/main/layout/header.layout/Header.container.js">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../node-demo-static-server/sonar-project.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Jenkinsfile">
           <value>
             <set />
           </value>
