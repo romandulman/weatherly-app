@@ -84,7 +84,7 @@ pipeline {
               sh 'ssh -v ubuntu@$server'
               sh 'ssh ubuntu@$server sudo docker pull' + "$imageName" + ":$BUILD_NUMBER"
               sh 'ssh ubuntu@$server sudo docker rm locationer --force '
-              sh 'ssh ubuntu@$server sudo docker run --detach  --name weatherly  --restart=always --env "VIRTUAL_HOST=weatherly.romandulman.com" "LETSENCRYPT_HOST=weatherly.romandulman.com"' + "$imageName" + ":$BUILD_NUMBER"
+              sh 'ssh ubuntu@$server sudo docker run --detach  --name weatherly  --restart=always --env "VIRTUAL_HOST=weatherly.romandulman.com"' + "$imageName" + ":$BUILD_NUMBER"
           }
        }
    }
