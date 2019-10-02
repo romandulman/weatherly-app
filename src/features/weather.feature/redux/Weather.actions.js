@@ -12,10 +12,8 @@ import { getCurrentPosition } from "../../../utils/geo.util";
 
 import {
   alertSuccess,
-  alertError,
-    alertClear
+  alertError
 } from "../../../main/common/alert/redux/Alert.actions";
-
 
 export const LoadWeatherAction = (id, city, fav) => {
   return dispatch => {
@@ -28,9 +26,6 @@ export const LoadWeatherAction = (id, city, fav) => {
       },
       error => {
         dispatch(fetchWeatherFailure(error));
-        setTimeout(function(){
-          dispatch(alertClear())
-        }, 3000);
       }
     );
   };
@@ -40,42 +35,36 @@ export const LoadCurrentLocationWeather = () => {
   return dispatch => {
     getCurrentPosition().then(
       position => {
-        getWeatherByGeo(position.coords.latitude, position.coords.longitude).then(location => {
+        getWeatherByGeo(
+          position.coords.latitude,
+          position.coords.longitude
+        ).then(location => {
           dispatch(LoadWeatherAction(location.Key, location.LocalizedName));
         });
       },
       error => {
-        dispatch(alertError("Cannot get Geo Location, Setting default Location..."));
+        dispatch(
+          alertError("Cannot get Geo Location, Setting default Location...")
+        );
         dispatch(LoadWeatherAction(215854, "Tel Aviv"));
-        setTimeout(function(){
-          dispatch(alertClear())
-        }, 3000);
       }
     );
   };
 };
 
 export const HandleFavorite = (handle, isFavorite) => {
-
   return dispatch => {
     if (!isFavorite) {
       dispatch(AddFavotiteAction(handle));
       dispatch(TagFavorite(handle.city));
       dispatch(alertSuccess("Added to Favorites"));
-      setTimeout(function(){
-        dispatch(alertClear())
-      }, 3000);
     } else {
       dispatch(RemoveFavoriteAction(handle.city));
       dispatch(UntagFavorite(handle.city));
       dispatch(alertSuccess("Removed from Favorites"));
-      setTimeout(function(){
-        dispatch(alertClear())
-      }, 3000);
     }
   };
 };
-
 
 ///////////////////////////////////////////////////////
 
@@ -102,4 +91,3 @@ const UntagFavorite = city => ({
   type: WeatherConstants.UNTAG_FAVORITE,
   payload: { city }
 });
-

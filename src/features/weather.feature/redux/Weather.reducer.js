@@ -1,10 +1,25 @@
 import { WeatherConstants } from "./Weather.constants";
+import {
+  isSavedPersist,
+  loadState,
+  lsConst,
+  saveState
+} from "../../../utils/local-storage";
+
+const initFavItemsList = () => {
+  if (isSavedPersist(lsConst.WTHRLY_FAV_KEYS)) {
+    saveState([], lsConst.WTHRLY_FAV_KEYS);
+    return [];
+  } else {
+    return loadState(lsConst.WTHRLY_FAV_KEYS);
+  }
+};
 
 const initState = {
   items: [],
   loading: false,
   isFavorite: false,
-  favItemsList: []
+  favItemsList: initFavItemsList()
 };
 
 export const WeatherReducer = (state = initState, action) => {
@@ -39,6 +54,10 @@ export const WeatherReducer = (state = initState, action) => {
       };
 
     case WeatherConstants.TAG_FAVORITE:
+      saveState(
+        [...state.favItemsList, action.payload.city],
+        lsConst.WTHRLY_FAV_KEYS
+      );
       return {
         ...state,
         isFavorite: !state.isFavorite,
@@ -49,15 +68,11 @@ export const WeatherReducer = (state = initState, action) => {
       const data = state.favItemsList.filter(function(item) {
         return !item.includes(action.payload.city);
       });
+      saveState(data, lsConst.WTHRLY_FAV_KEYS);
       return {
         ...state,
         isFavorite: !state.isFavorite,
         favItemsList: data
-      };
-
-    case WeatherConstants.LOAD_FAVOTITE:
-      return {
-        items: action.items
       };
 
     default:

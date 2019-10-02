@@ -128,6 +128,31 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../vacationer-app/.docker/prod/Dockerfile">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../vacationer-app/.docker/prod/docker-compose.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../vacationer-app/Jenkinsfile">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../vacationer-app/README.md">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../vacationer-app/backend/package.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/Jenkinsfile">
           <value>
             <set />
@@ -143,7 +168,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/features/weather.feature/components/DayItem.component.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/features/weather.feature/containers/Weather.container.js">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/features/weather.feature/redux/Weather.actions.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/features/weather.feature/redux/Weather.constants.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/features/weather.feature/redux/Weather.reducer.js">
           <value>
             <set />
           </value>
@@ -154,6 +199,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/features/weather.feature/sub-features/favorites.sub-feature/redux/Favorites.reducer.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/app/App.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/common/alert/containers/Snackbar.container.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/common/alert/redux/Alert.reducer.js">
           <value>
             <set />
           </value>

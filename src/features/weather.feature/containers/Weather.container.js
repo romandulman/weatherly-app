@@ -33,15 +33,15 @@ class Weather extends Component {
   }
 
   render() {
-    const { dispatch, weatherData, isFavorite, loading, error } = this.props;
+    const { dispatch, weatherData, isFavorite, loading } = this.props;
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
 
     return (
       <div className="root">
         <Search />
-        <br/>
-        <br/>
-          <div className="spinner-container"> {loading && <Spinner />}</div>
+        <br />
+        <br />
+        <div className="spinner-container"> {loading && <Spinner />}</div>
         <Container fluid>
           <Row>
             <Col>
@@ -50,11 +50,9 @@ class Weather extends Component {
                   <div className="default-container">
                     <img
                       className="default-icon"
-                      src={
-                        "https://weatherly-res.s3.eu-central-1.amazonaws.com/weather-icons/" +
-                        data.WeatherIcon +
-                        ".png"
-                      } alt="weather-icons"/>
+                      src={` https://weatherly-res.s3.eu-central-1.amazonaws.com/weather-icons/${data.WeatherIcon}.png`}
+                      alt="weather-icons"
+                    />
                     <div className="default-text-cont">
                       <div className="default-city">{weatherData.city}</div>
                       <div className="default-temp">

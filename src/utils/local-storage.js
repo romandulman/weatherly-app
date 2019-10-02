@@ -1,30 +1,33 @@
 export const lsConst = {
-    WTHRLY: "WTHRLY",
+    WTHRLY_FAV_LIST: "WTHRLY_FAV_LIST",
+    WTHRLY_FAV_KEYS: "WTHRLY_FAV_KEYS"
 };
 
-export const loadState = () => {
-    try {
-        const serializedState = localStorage.getItem(lsConst.WTHRLY);
-        if (serializedState === null) {
-            return undefined;
-        }
-        return JSON.parse(serializedState);
-    } catch (err) {
-        return undefined;
+export const loadState = key => {
+  try {
+    const serializedState = localStorage.getItem(key);
+    if (serializedState === null) {
+      return undefined;
     }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
 };
 
-export const isSavedPersist = () => {
-    return localStorage.getItem(lsConst.WTHRLY) === null;
+export const isSavedPersist = key => {
+  return localStorage.getItem(key) === null;
 };
 
-export const saveState = state => {
-    try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem(lsConst.WTHRLY, serializedState);
-    } catch (err) {
-        if (err === "QUOTA_EXCEEDED_ERR") {
-            alert('Browser Local Storage quota exceeded limit, the items will not save')
-        }
+export const saveState = (state,key) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem(key, serializedState);
+  } catch (err) {
+    if (err === "QUOTA_EXCEEDED_ERR") {
+      alert(
+        "Browser Local Storage quota exceeded limit, the items will not save"
+      );
     }
+  }
 };

@@ -1,6 +1,5 @@
 import { FavoritesConstants } from "./Favorites.constants";
 
-
 export const AddFavotiteAction = weatherItem => ({
   type: FavoritesConstants.ADD_FAVORITE,
   payload: { weatherItem }
