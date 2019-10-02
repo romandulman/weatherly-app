@@ -56,6 +56,7 @@ export const LoadCurrentLocationWeather = () => {
 };
 
 export const HandleFavorite = (handle, isFavorite) => {
+
   return dispatch => {
     if (!isFavorite) {
       dispatch(AddFavotiteAction(handle));

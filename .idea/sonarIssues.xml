@@ -143,6 +143,26 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/features/weather.feature/redux/Weather.actions.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/features/weather.feature/sub-features/favorites.sub-feature/redux/Favorites.actions.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/features/weather.feature/sub-features/favorites.sub-feature/redux/Favorites.reducer.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/utils/local-storage.js">
+          <value>
+            <set />
+          </value>
+        </entry>
       </map>
     </option>
   </component>
